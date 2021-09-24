@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rental System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="booking " href="/booking">Booking Management</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</nav>
+	<br>
+	<br>
+	<div class="container">
+
+		<div class="row">
+			<!-- bootstrap css class to support different device size -->
+			<div
+				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Create New Booking</h1>
+				<div class="card-body">
+					<!-- Defining action for the column @ $ are thymleaf syntax -->
+					<form th:action="@{/booking}" th:object="${car}" method="POST">
+						<div class="form-group text-center">
+							<label>Vehicles for hire</label>
+							<!-- Binding input to the post name -->
+
+							<!-- 							Allow the user to type the name  -->
+
+							<!-- 		<input class=form-control-sm type="text" name="name"
+								th:field="*{name}" placeholder="Enter car name" /> -->
+
+							<select th:field=*{name}>
+								<option th:value="Vaxuhall" th:text="Vaxuhall"></option>
+								<option th:value="Toyota" th:text="Toyota"></option>
+								<option th:value="Tesla" th:text="Tesla"></option>
+								<option th:value="Renault" th:text="Renault"></option>
+								<option th:value="Nissan" th:text="Nissan"></option>
+
+
+							</select>
+						</div>
+						<!-- th:feild is used to bind the view with the model -->
+						<div class="form-group text-center">
+							<label> Vehicles Type</label>
+							<!-- Binding input to the post name -->
+
+							<select th:field=*{type} class="form-control-sm">
+								<option th:value="Hatchback" th:text="Hatchback"></option>
+								<option th:value="Coupe" th:text="Coupe"></option>
+								<option th:value="Suv" th:text="Suv"></option>
+
+							</select>
+							<!-- <input class=form-control-sm type="text" name="type"
+								th:feild="*{type}" placeholder="Enter car type" /> -->
+						</div>
+
+						<!-- Select and option is simple html and the th:feild can be used to bind the view with the model
+ -->
+						<div class="form-group text-center">
+							<label>Number of passenger</label> <select
+								th:field="*{passengers}" class="form-control-sm">
+								<option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}"
+									th:text="${i}"></option>
+							</select>
+						</div>
+
+
+
+						<div class="form-group text-center">
+							<label> Car owner</label>
+							<!-- Binding input to the post name -->
+							<input class=form-control-sm type="text" name="owner"
+								th:field="*{owner}" placeholder="Enter owner email" />
+						</div>
+
+						<div class="text-center  box-footer">
+							<button type=submit class="btn btn-primary">Make a
+								booking</button>
+
+							<!--The type is rest and its inside form there for the funcianlity of this button is to reset the form   -->
+							<button type=reset>Rest value</button>
+
+							<a  th:href="@{/booking/new/{Wheels}(Wheels=${car.Wheels})}}" class="btn btn-secondory">Add Car</a>
+
+						</div>
+
+
+
+
+
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+</html>

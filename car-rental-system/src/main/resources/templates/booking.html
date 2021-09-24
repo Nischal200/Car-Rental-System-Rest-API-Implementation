@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- linking thymleaf offical website -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rental System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="booking " href="/booking">Booking Management</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</nav>
+	<br>
+	<br>
+
+
+	<div class="container">
+		<div class="text-center mt-10">
+			<h1>Booked Vehicles</h1>
+		</div>
+
+		<div class="column">
+			<div class="clog-lg-3"></div>
+			<a th:href="@{/booking/new}"
+				class="btn btn-primary btn-big mb-3 mt-3"> Add Booking</a>
+		</div>
+
+
+		<table class="table table-stripped table-borderd">
+			<thead class="table-dark">
+				<tr>
+					<th>Car Name</th>
+					<th>Car Type</th>
+					<th>Car Wheels</th>
+					<th>Passengers</th>
+					<th>Car Owner</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="car:${booking}">
+					<td th:text=${car.name}></td>
+					<td th:text=${car.type}></td>
+					<td th:text=${car.wheels}></td>
+					<td th:text=${car.passenger}></td>
+					<td th:text=${car.owner}></td>
+					<!-- 					Getting id from student model using th:ref to get link -->
+					<td>
+			 		<a th:href= "@{/booking/{id}(id=${car.id})}" class="btn btn-danger">Delete</a> 
+					</td>
+					
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
